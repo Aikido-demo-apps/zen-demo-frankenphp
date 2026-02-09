@@ -34,6 +34,7 @@ COPY .fly/entrypoint.sh /entrypoint
 
 # 3. Copy application code, skipping files based on .dockerignore
 COPY . /var/www/html
+RUN mv /var/www/html/public/index_classic.php /var/www/html/public/index.php
 WORKDIR /var/www/html
 
 # 4. Setup application dependencies
