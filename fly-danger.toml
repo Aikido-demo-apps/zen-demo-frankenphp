@@ -3,9 +3,9 @@
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = 'zen-demo-php-danger'
+app = 'zen-demo-frankenphp-danger'
 primary_region = 'ams'
-console_command = 'php /var/www/html/artisan tinker'
+console_command = 'frankenphp php-cli /var/www/html/artisan tinker'
 
 [build]
   [build.args]
