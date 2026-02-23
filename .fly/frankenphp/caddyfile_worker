@@ -1,4 +1,8 @@
 :8080 {
+    log {
+        level ERROR
+    }
+    
     root * /var/www/html/public
     
     php_server {
