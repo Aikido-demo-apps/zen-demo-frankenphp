@@ -22,6 +22,7 @@ $nbRequests = 0;
 while (frankenphp_handle_request(function () use ($app, &$nbRequests) {
     \aikido\worker_rinit();
 
+    try{
     if (class_exists(Facade::class)) {
         Facade::clearResolvedInstances();
     }
@@ -34,9 +35,10 @@ while (frankenphp_handle_request(function () use ($app, &$nbRequests) {
     $response->send();
     
     $app->terminate($request, $response);
-
-    if ((++$nbRequests % 100) === 0 && function_exists('gc_collect_cycles')) {
-        gc_collect_cycles();
+    } catch (Throwable $e) {
+        if ((++$nbRequests % 100) === 0 && function_exists('gc_collect_cycles')) {
+            gc_collect_cycles();
+        }
     }
 
     \aikido\worker_rshutdown();
